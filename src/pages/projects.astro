@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import ContactCTA from '../components/ContactCTA.astro';
+import Grid from '../components/Grid.astro';
+import Hero from '../components/Hero.astro';
+import PortfolioPreview from '../components/PortfolioPreview.astro';
+
+const projects = (await getCollection('work')).sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+---
+
+<BaseLayout
+  title="My Projects | Abdelkader settah"
+  description="Learn about Senior frontend and web developer. Abdelkader seetah's most recent projects. using React | Nextjs | Typescript | Astro | tailwind"
+>
+  <div class="gap-20 dark:bg-gray-800 dark:text-white page-width:px-0">
+    <main class="gap-8">
+      <Hero
+        title="My projects"
+        tagline="See my most recent projects below to get an idea of my past experience."
+        cta={false}
+      />
+      <section class="max-width-style py-8">
+        <Grid variant="offset">
+          {projects.map((project) => <PortfolioPreview project={project} />)}
+        </Grid>
+      </section>
+    </main>
+    <ContactCTA />
+  </div>
+</BaseLayout>

@@ -1,0 +1,75 @@
+---
+import { Image } from 'astro:assets';
+import { PagePathEnum } from '../models/pagePath';
+interface Props {
+  image?: boolean;
+  title: string;
+  tagline: string;
+  cta?: boolean;
+}
+
+const { tagline, title, image, cta = true } = Astro.props;
+---
+
+<section class="dark:bg-dark-medium bg-light-primary-color dark:bg-gray-900">
+  <article
+    class:list={[
+      'mx-auto flex max-w-6xl flex-col items-center justify-between gap-8 py-9 sm:flex-row px-6 page-width:px-0 ',
+    ]}
+  >
+    <div
+      class:list={[
+        'flex flex-col  items-center  sm:items-start ',
+        image ? 'gap-2' : 'gap-8',
+      ]}
+    >
+      <h1
+        class:list={[
+          '[margin-inline:auto w-auto text-center  sm:w-[10ch] sm:text-left ',
+          image
+            ? 'text-3xl sm:text-4xl md:text-6xl lg:text-8xl'
+            : 'text-6xl font-bold',
+        ]}
+      >
+        {title}
+      </h1>
+
+      {
+        tagline && (
+          <p class="max-w-[37ch] text-center   sm:text-left">{tagline}</p>
+        )
+      }
+      {
+        cta && (
+          <div class="my-4 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href={PagePathEnum.Projects}
+              class="whitespace-nowrap rounded-md bg-violet-600 px-6 py-3 text-center font-semibold text-white [transition:all_linear_0.2s] hover:bg-violet-500"
+            >
+              View my work
+            </a>
+            <a
+              href={PagePathEnum.About}
+              class="whitespace-nowrap rounded-md px-6 py-3 text-center font-semibold text-violet-600 [transition:all_linear_0.2s] hover:text-violet-500 hover:underline"
+            >
+              More about me
+            </a>
+          </div>
+        )
+      }
+    </div>
+    {
+      image && (
+        <figure class="flex w-full justify-end">
+          <Image
+            alt="Abdelkader settah smiling in a suit"
+            width="480"
+            height="620"
+            src="/assets/abdelkader_settah.webp"
+            class="aspect-5/4 max-h-[500px]  max-w-full rounded-3xl object-cover object-top shadow-md sm:aspect-3/4 "
+          />
+        </figure>
+      )
+    }
+  </article>
+</section>

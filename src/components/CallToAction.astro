@@ -1,0 +1,20 @@
+---
+interface Props {
+  href: string;
+  ariaLabel?: string;
+  customClass?: string;
+}
+
+const { href, ariaLabel = 'View all', customClass } = Astro.props;
+---
+
+<div class="dark:bg-dark-medium flex justify-center">
+  <a
+    href={href}
+    aria-label={ariaLabel}
+    class:list={[
+      'w-my-6 inline-block whitespace-nowrap rounded-md bg-primary-color px-6 py-2 text-center font-semibold text-white [transition:all_linear_0.2s] hover:scale-105 hover:bg-primary-hover',
+      customClass ?? '',
+    ]}><slot /></a
+  >
+</div>

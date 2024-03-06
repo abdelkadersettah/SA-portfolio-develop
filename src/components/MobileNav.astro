@@ -1,0 +1,114 @@
+---
+import HamburgerBtn from './HamburgerBtn.astro';
+import Logo from './Logo.astro';
+import Nav from './Nav.astro';
+---
+
+<div class="sm:hidden">
+  <HamburgerBtn />
+  <section
+    class="invisible fixed inset-0 z-20 overflow-hidden"
+    id="menu-container"
+  >
+    <div
+      class="absolute inset-0 bg-gray-500 bg-opacity-70 transition-opacity duration-500 ease-in-out"
+      aria-hidden="false"
+      id="menu-overlay"
+    >
+      <div
+        class="absolute inset-y-0 right-0 flex translate-x-full transform transition duration-500 ease-in-out sm:duration-700"
+        id="menu-content"
+        aria-labelledby="slide-over-heading"
+      >
+        <div
+          class="k flex h-full w-screen max-w-md flex-col space-y-6 bg-gray-50 pb-4 dark:bg-gray-900"
+        >
+          <nav
+            class="flex items-center justify-between px-8 py-4 shadow-md dark:shadow-[0px_3px_12px_-2px] dark:shadow-gray-700"
+          >
+            <Logo />
+            <menu-close-button>
+              <template>
+                <button
+                  class="-mr-1 w-8 p-0 dark:text-white"
+                  id="closeBtn"
+                  aria-expanded="true"
+                >
+                  <svg
+                    role="img"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    aria-labelledby="closeIconTitle"
+                    stroke-linejoin="miter"
+                    stroke-linecap="square"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                  >
+                    <title id="closeIconTitle">Close</title>
+                    <path
+                      d="M6.34314575 6.34314575L17.6568542 17.6568542M6.34314575 17.6568542L17.6568542 6.34314575"
+                    ></path>
+                  </svg>
+                </button>
+              </template>
+            </menu-close-button>
+          </nav>
+          <Nav mobile={true} />
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-0 w-full"></div>
+  </section>
+
+  <script>
+    class MenuCloseButton extends HTMLElement {
+      constructor() {
+        super();
+
+        // Inject menu toggle button when JS runs.
+        this.appendChild(
+          this.querySelector('template')!.content.cloneNode(true)
+        );
+        const btn = this.querySelector('button')!;
+
+        // Hide menu (shown by default to support no-JS browsers).
+        const menu = document.getElementById('menu-content')!;
+        const menuContainer = document.getElementById('menu-container')!;
+        const menuOverlay = document.getElementById('menu-overlay')!;
+        menu.hidden = false;
+        /** Set whether the menu is currently expanded or collapsed. */
+        const setExpanded = (expand: boolean) => {
+          btn.setAttribute('aria-expanded', expand ? 'false' : 'true');
+          menuOverlay.setAttribute('aria-expanded', expand ? 'false' : 'true');
+
+          if (!expand) {
+            menuContainer.classList.remove('invisible');
+            menu.classList.add('translate-x-0');
+            menu.classList.remove('translate-x-full');
+          } else {
+            menuContainer.classList.add('invisible');
+            menu.classList.remove('translate-x-0');
+            menu.classList.add('translate-x-full');
+          }
+        };
+
+        // Toggle menu visibility when the menu button is clicked.
+        btn.addEventListener('click', () => setExpanded(menu?.hidden));
+        menuOverlay.addEventListener('click', () => setExpanded(menu?.hidden));
+
+        // Hide menu button for large screens.
+        const handleViewports = (e: MediaQueryList | MediaQueryListEvent) => {
+          setExpanded(e.matches);
+          btn.hidden = e.matches;
+        };
+        const mediaQueries = window.matchMedia('(min-width: 50em)');
+        handleViewports(mediaQueries);
+        mediaQueries.addEventListener('change', handleViewports);
+      }
+    }
+    customElements.define('menu-close-button', MenuCloseButton);
+  </script>
+</div>

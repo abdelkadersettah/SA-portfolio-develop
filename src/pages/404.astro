@@ -1,0 +1,28 @@
+---
+import CallToAction from '../components/CallToAction.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { PagePathEnum } from '../models/pagePath';
+---
+
+<BaseLayout title="Not Found" description="404 Error — this page was not found">
+  <main class="">
+    <section
+      class="dark:bg-dark-medium h-96 bg-light-primary-color dark:bg-gray-900"
+    >
+      <article
+        class="max-width-style flex flex-col items-start justify-start gap-6 py-9"
+      >
+        <h1
+          class:list={[
+            '[margin-inline:auto w-auto text-center  sm:w-[10ch] sm:text-left ',
+
+            'text-6xl font-bold',
+          ]}
+        >
+          Page Not Found
+        </h1>
+        <CallToAction href={PagePathEnum?.Home}>Go home</CallToAction>
+      </article>
+    </section>
+  </main>
+</BaseLayout>

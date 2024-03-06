@@ -1,0 +1,25 @@
+{
+  "name": "sa-portfolio",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.0.2",
+    "@astrojs/tailwind": "^5.0.0",
+    "astro": "^3.2.0",
+    "tailwindcss": "^3.3.3"
+  },
+  "devDependencies": {
+    "eslint": "8.41.0",
+    "eslint-plugin-astro": "0.27.1",
+    "prettier": "2.8.8",
+    "prettier-plugin-astro": "0.9.0",
+    "prettier-plugin-tailwindcss": "0.3.0"
+  }
+}

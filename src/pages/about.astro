@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import ContactCTA from '../components/ContactCTA.astro';
+import Hero from '../components/Hero.astro';
+---
+
+<BaseLayout
+  title="About | Abdelkader settah"
+  description="About Abdelkader settah developer React | Javascript | taiwind | Css3 | astro | zid | salla | shopify | wordpress"
+>
+  <div class="gap-20 dark:bg-gray-800 dark:text-white page-width:px-0">
+    <main class="">
+      <Hero
+        cta={false}
+        title="About"
+        tagline="Thanks for stopping by. Read below to learn more about myself and my background."
+      />
+
+      <section class="max-width-style py-8">
+        <article class="flex flex-col gap-4 py-6">
+          <h2 class="text-xl font-bold">Background</h2>
+          <p class="text-lg">
+            I am Abdelkader Settah, a Senior Front End Developer based in the
+            picturesque island of Malta. With years of experience in the field,
+            I am passionate about creating websites that are not only visually
+            stunning but also highly user-friendly. My toolset includes React,
+            Next.js, JavaScript, TypeScript, jQuery, CSS3, Sass, Tailwind CSS,
+            Bootstrap, HTML5, and Apollo, which I use to turn your digital
+            dreams into reality.
+          </p>
+          <p class="text-lg">
+            What sets me apart is my deep understanding of UI design and my
+            ability to manage projects effectively. As a solution-driven leader,
+            I have a knack for guiding frontend development teams, ensuring that
+            projects are not only completed on time but also within budget. My
+            strength in customer relations, keen eye for detail, and excellent
+            communication skills make me a valuable addition to any development
+            team.
+          </p>
+          <p class="text-lg">
+            Beyond my professional life, I am a husband and a proud father to a
+            beautiful daughter. In my free time, I find joy in the simple
+            pleasures of life. I'm an avid reader, a fan of compelling TV shows,
+            and I love to explore new places and savor the diverse cuisines the
+            world has to offer. These interests make me a well-rounded
+            individual, contributing to both my personal and professional
+            growth.
+          </p>
+        </article>
+        <article>
+          <h2 class="text-xl font-bold">Skills</h2>
+          <ul
+            class="skills flex flex-wrap gap-4 py-6 text-lg text-gray-900 [&>*]:rounded-md [&>*]:bg-light-blue [&>*]:p-2"
+          >
+            <li>React</li>
+            <li>Typescript</li>
+            <li>JavaScript</li>
+            <li>Nextjs</li>
+            <li>Astro</li>
+            <li>Tailwind</li>
+            <li>Bootstrap</li>
+            <li>GraphQl</li>
+            <li>Redux</li>
+            <li>CSS3</li>
+            <li>HTML5</li>
+          </ul>
+        </article>
+      </section>
+    </main>
+
+    <ContactCTA />
+  </div>
+</BaseLayout>

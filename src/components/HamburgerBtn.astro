@@ -1,0 +1,75 @@
+<menu-button>
+  <template>
+    <div class="flex dark:text-white">
+      <button
+        type="button"
+        class="text-purple -mr-1 w-auto p-0"
+        aria-expanded="false"
+        id="hambrgerButton"
+      >
+        <svg
+          role="img"
+          width="40"
+          height="40"
+          viewBox="0 0 24 24"
+          aria-labelledby="hamburgerIconTitle"
+          stroke-linejoin="miter"
+          stroke-linecap="square"
+          stroke-width="1"
+          stroke="currentColor"
+          fill="none"
+        >
+          <title id="hamburgerIconTitle">Menu</title>
+          <path d="M6 7L18 7M6 12L18 12M6 17L18 17"></path>
+        </svg>
+      </button>
+    </div>
+  </template>
+</menu-button>
+
+<script>
+  class MenuButton extends HTMLElement {
+    constructor() {
+      super();
+
+      // Inject menu toggle button when JS runs.
+      this.appendChild(this.querySelector('template')!.content.cloneNode(true));
+      const btn = this.querySelector('button')!;
+
+      // Hide menu (shown by default to support no-JS browsers).
+      const menu = document.getElementById('menu-content')!;
+      const menuContainer = document.getElementById('menu-container')!;
+      menu.hidden = true;
+      /** Set whether the menu is currently expanded or collapsed. */
+      const setExpanded = (expand: boolean) => {
+        btn.setAttribute('aria-expanded', expand ? 'true' : 'false');
+        if (expand) {
+          menuContainer.classList.remove('invisible');
+          menu.classList.add('translate-x-0');
+          menu.classList.remove('translate-x-full');
+        } else {
+          menuContainer.classList.add('invisible');
+          menu.classList.remove('translate-x-0');
+          menu.classList.add('translate-x-full');
+        }
+      };
+
+      // Toggle menu visibility when the menu button is clicked.
+      btn.addEventListener('click', () => setExpanded(menu.hidden));
+
+      // Hide menu button for large screens.
+      const handleViewports = (e: MediaQueryList | MediaQueryListEvent) => {
+        setExpanded(e.matches);
+        btn.hidden = e.matches;
+      };
+      const mediaQueries = window.matchMedia('(min-width: 50em)');
+      handleViewports(mediaQueries);
+      mediaQueries.addEventListener('change', handleViewports);
+    }
+  }
+  customElements.define('menu-button', MenuButton);
+</script>
+<style>
+  button[aria-expanded='true'] #mobileNav {
+  }
+</style>

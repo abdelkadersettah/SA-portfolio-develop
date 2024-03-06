@@ -1,0 +1,15 @@
+---
+interface Props {
+  variant?: 'offset' | 'small';
+}
+
+const { variant } = Astro.props;
+---
+
+<ul
+  class="md-gap-12 mx-auto grid max-w-6xl grid-cols-1 items-start gap-10 px-6 py-6 md:grid-cols-3"
+>
+  <slot />
+</ul>
+
+<style></style>

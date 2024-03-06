@@ -1,0 +1,47 @@
+---
+import { getPagePath } from '../utilities/getPagePath';
+import { isPathEqualCurrent } from '../utilities/isPathEqualCurrent';
+import Logo from './Logo.astro';
+import SocialNav from './SocialNav.astro';
+
+const currentYear = new Date().getFullYear();
+const textLinks = getPagePath();
+---
+
+<footer
+  class="relative bg-gray-100 shadow-md dark:bg-gray-900 dark:shadow-[0px_3px_12px_-2px] dark:shadow-gray-700"
+>
+  <div class="flex flex-col">
+    <div
+      class="max-width-style flex w-full flex-wrap items-start justify-between gap-4 py-6 sm:items-center"
+    >
+      <Logo />
+      <nav>
+        <ul class="flex flex-col gap-2 sm:flex-row">
+          {
+            textLinks.map(({ label, href }) => (
+              <li class=" font-semibold  ">
+                <a
+                  aria-current={isPathEqualCurrent(Astro.url.pathname, href)}
+                  class={[
+                    isPathEqualCurrent(Astro.url.pathname, href)
+                      ? 'text-primary-hover dark:text-primary-color '
+                      : 'text-gray-900 dark:text-white',
+                  ].join(' ')}
+                  href={href}
+                >
+                  {label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <SocialNav />
+    </div>
+    <p class="border-t-2 px-8 py-4 text-center text-gray-900 dark:text-white">
+      &copy; {currentYear} Abdelkader settah
+    </p>
+  </div>
+</footer>
+<style></style>

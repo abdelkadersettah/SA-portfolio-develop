@@ -1,0 +1,20 @@
+---
+import { getPagePath } from '../utilities/getPagePath';
+import Logo from './Logo.astro';
+import MobileNav from './MobileNav.astro';
+import Nav from './Nav.astro';
+import ThemeToggle from './ThemeToggle.astro';
+
+getPagePath();
+---
+
+<header
+  class="relative bg-gray-100 shadow-md dark:bg-gray-900 dark:shadow-[0px_3px_12px_-2px] dark:shadow-gray-700"
+>
+  <div class="max-width-style flex items-center justify-between gap-4">
+    <Logo />
+    <Nav />
+    <ThemeToggle />
+    <MobileNav />
+  </div>
+</header>

@@ -1,0 +1,3 @@
+.max-width-style {
+  @apply mx-auto  max-w-custom-max-width px-6 py-6 page-width:px-0;
+}

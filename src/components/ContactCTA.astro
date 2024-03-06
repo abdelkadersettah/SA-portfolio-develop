@@ -1,0 +1,17 @@
+---
+import { PagePathEnum } from '../models/pagePath';
+import CallToAction from './CallToAction.astro';
+---
+
+<aside
+  class="border-t-2 py-6 dark:border-violet-600 dark:bg-gray-800 dark:text-white"
+>
+  <article
+    class="max-width-style flex flex-wrap items-center justify-between gap-4"
+  >
+    <h4 class="max-w-[16ch] text-4xl font-bold">
+      Interested in working together?
+    </h4>
+    <CallToAction href={PagePathEnum?.Contact}>Send Me a Message</CallToAction>
+  </article>
+</aside>
